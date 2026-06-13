@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0f766e', // teal
-        accent: '#f97316', // complementary orange
+        primary: '#047857', // green (emerald)
+        accent: '#ffffff', // white as complementary color
       }
     }
   },
