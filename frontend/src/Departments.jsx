@@ -1,107 +1,86 @@
 import React, { useState, useEffect } from 'react'
 
 const departments = [
-  {
-    id: 'cardiology',
-    name: 'Cardiology',
-    desc: 'Heart and vascular diseases, advanced interventions.',
-    img: 'https://source.unsplash.com/400x300/?cardiologist,doctor,heart'
-  },
-  {
-    id: 'neurology',
-    name: 'Neurology',
-    desc: "Stroke, epilepsy, migraine, and Parkinson's care.",
-    img: 'https://source.unsplash.com/400x300/?neurologist,doctor,brain'
-  },
-  {
-    id: 'orthopedics',
-    name: 'Orthopedics',
-    desc: 'Joint replacement, sports injuries, and spine surgery.',
-    img: 'https://source.unsplash.com/400x300/?orthopedic,surgeon,doctor'
-  },
-  {
-    id: 'pediatrics',
-    name: 'Pediatrics',
-    desc: 'Child health, vaccinations, and developmental care.',
-    img: 'https://source.unsplash.com/400x300/?pediatrician,doctor,child'
-  },
-  {
-    id: 'dermatology',
-    name: 'Dermatology',
-    desc: 'Skin disorders, laser treatments, and acne care.',
-    img: 'https://source.unsplash.com/400x300/?dermatologist,doctor,skin'
-  },
-  {
-    id: 'gynecology',
-    name: 'Gynecology',
-    desc: "Women's health, maternity, and fertility services.",
-    img: 'https://source.unsplash.com/400x300/?gynecologist,doctor,maternity'
-  },
-  {
-    id: 'dentist',
-    name: 'Dentist',
-    desc: 'Dental implants, braces, root canals, and oral hygiene.',
-    img: 'https://source.unsplash.com/400x300/?dentist,doctor,teeth'
-  },
-  {
-    id: 'eye',
-    name: 'Eye Center',
-    desc: 'Cataract surgery, LASIK, glaucoma treatment, and vision therapy.',
-    img: 'https://source.unsplash.com/400x300/?ophthalmologist,doctor,eye'
-  }
+  { id: 'cardiology', name: 'Cardiology', desc: 'Heart and vascular diseases, advanced interventions.' },
+  { id: 'neurology', name: 'Neurology', desc: "Stroke, epilepsy, migraine, and Parkinson's care." },
+  { id: 'orthopedics', name: 'Orthopedics', desc: 'Joint replacement, sports injuries, and spine surgery.' },
+  { id: 'pediatrics', name: 'Pediatrics', desc: 'Child health, vaccinations, and developmental care.' },
+  { id: 'dermatology', name: 'Dermatology', desc: 'Skin disorders, laser treatments, and acne care.' },
+  { id: 'gynecology', name: 'Gynecology', desc: "Women's health, maternity, and fertility services." },
+  { id: 'dentist', name: 'Dentist', desc: 'Dental implants, braces, root canals, and oral hygiene.' },
+  { id: 'eye', name: 'Eye Center', desc: 'Cataract surgery, LASIK, glaucoma treatment, and vision therapy.' }
 ]
 
-function DeptIcon({ id }){
+function DeptPerson({ id }){
+  const common = { width: '100%', height: '100%', viewBox: '0 0 120 80' }
   switch(id){
     case 'cardiology':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 21s-6.716-4.35-9.071-7.03C-0.573 9.48 3.5 4 8 6c2.5 1.2 3.5 4 4 4s1.5-2.8 4-4c4.5-2 8.573 3.48 5.071 7.97C18.716 16.65 12 21 12 21z" fill="#ef4444" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#fff7f7" />
+          <circle cx="36" cy="36" r="18" fill="#fee2e2" />
+          <path d="M26 48c6-6 20-6 26 0" stroke="#ef4444" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M44 34c0 4-4 6-8 6s-8-2-8-6 4-8 8-8 8 4 8 8z" fill="#ef4444" />
         </svg>
       )
     case 'neurology':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2a7 7 0 0 0-7 7v3a4 4 0 0 0 4 4h1v3l3-2 3 2v-3h1a4 4 0 0 0 4-4V9a7 7 0 0 0-7-7z" fill="#6366f1" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#f3f4ff" />
+          <circle cx="36" cy="36" r="18" fill="#eef2ff" />
+          <path d="M30 36c4-10 16-10 20 0" stroke="#4f46e5" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <circle cx="36" cy="36" r="4" fill="#4f46e5" />
         </svg>
       )
     case 'orthopedics':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2v10M8 14l4 4 4-4" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#f0fdf4" />
+          <circle cx="36" cy="36" r="18" fill="#ecfdf5" />
+          <path d="M28 44c6-6 20-6 26 0" stroke="#059669" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M46 30l6 6" stroke="#059669" strokeWidth="2" strokeLinecap="round" />
         </svg>
       )
     case 'pediatrics':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="8" r="3" fill="#f59e0b" />
-          <path d="M6 18c0-3 6-4 6-4s6 1 6 4v1H6v-1z" fill="#fbbf24" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#fff7ed" />
+          <circle cx="36" cy="36" r="18" fill="#fffbeb" />
+          <circle cx="36" cy="33" r="5" fill="#f59e0b" />
+          <path d="M24 50c6-6 24-6 32 0" stroke="#f59e0b" strokeWidth="2" fill="none" strokeLinecap="round" />
         </svg>
       )
     case 'dermatology':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2c3 0 6 2 6 6 0 6-6 10-6 10s-6-4-6-10c0-4 3-6 6-6z" fill="#f97316" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#fff7ed" />
+          <circle cx="36" cy="36" r="18" fill="#fff1f0" />
+          <path d="M30 36c4-6 16-6 20 0" stroke="#fb923c" strokeWidth="2" fill="none" strokeLinecap="round" />
         </svg>
       )
     case 'gynecology':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="8" r="3" fill="#ec4899" />
-          <path d="M12 11v6M9 18h6" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#fff0f6" />
+          <circle cx="36" cy="36" r="18" fill="#fff1f2" />
+          <path d="M36 28v16" stroke="#db2777" strokeWidth="2" strokeLinecap="round" />
         </svg>
       )
     case 'dentist':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2c3 0 4 1 4 3s.5 6-4 9c-4.5-3-4-7-4-9s1-3 4-3z" fill="#60a5fa" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#eff6ff" />
+          <circle cx="36" cy="36" r="18" fill="#f0f9ff" />
+          <path d="M30 36c4-6 16-6 20 0" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" />
         </svg>
       )
     case 'eye':
       return (
-        <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" fill="#06b6d4" />
-          <circle cx="12" cy="12" r="2.5" fill="#0369a1" />
+        <svg {...common} className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="80" rx="10" fill="#ecfeff" />
+          <circle cx="36" cy="36" r="18" fill="#f0fdfa" />
+          <path d="M10 36s8-12 26-12 26 12 26 12-8 12-26 12S10 36 10 36z" fill="#06b6d4" opacity="0.2" />
+          <circle cx="36" cy="36" r="4" fill="#0369a1" />
         </svg>
       )
     default:
