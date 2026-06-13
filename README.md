@@ -155,7 +155,7 @@ cd backend
 source .venv/bin/activate
 pytest
 ```
-===========
+
 Notes & next steps
 ------------------
 - If an externally hosted image fails to display in the hero, add the image to `frontend/public/` and point `src/App.jsx` to it.
