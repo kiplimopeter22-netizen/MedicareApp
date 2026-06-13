@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const departments = [
   { id: 'cardiology', name: 'Cardiology', desc: 'Heart and vascular diseases, advanced interventions.' },
@@ -70,6 +70,14 @@ function DeptIcon({ id }){
 }
 
 export default function Departments(){
+  const [selected, setSelected] = useState(null)
+
+  useEffect(() => {
+    function onKey(e){ if(e.key === 'Escape') setSelected(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <main className="max-w-7xl mx-auto p-6">
       <header className="mb-6">
@@ -89,12 +97,32 @@ export default function Departments(){
               <h3 className="text-xl font-semibold text-slate-900">{d.name}</h3>
               <p className="mt-2 text-slate-600">{d.desc}</p>
               <div className="mt-4">
-                <button className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-600 text-white rounded-md hover:bg-green-700">Learn more</button>
+                <button
+                  onClick={() => setSelected(d)}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-600 text-white rounded-md hover:bg-green-700"
+                >
+                  Learn more
+                </button>
               </div>
             </div>
           </article>
         ))}
       </section>
+
+      {selected && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setSelected(null)} />
+          <div className="relative z-10 max-w-2xl w-full mx-4 bg-white rounded-xl shadow-xl overflow-hidden">
+            <div className="p-6">
+              <h2 className="text-2xl font-bold text-slate-900">{selected.name}</h2>
+              <p className="mt-3 text-slate-600">{selected.desc}</p>
+              <div className="mt-6 flex gap-2 justify-end">
+                <button onClick={() => setSelected(null)} className="px-4 py-2 rounded-md bg-slate-200 hover:bg-slate-300">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
