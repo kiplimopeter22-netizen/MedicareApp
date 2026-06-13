@@ -1,6 +1,14 @@
-import React from "react";
-import AppointmentPage from "./pages/AppointmentPage";
+import Home from "./components /Home"
+import AppointmentPage from "./components /AppointmentPage"
 
-export default function App() {
-  return <AppointmentPage />;
+function App() {
+  return (
+    <>
+    <Home/>
+    <AppointmentPage />
+    </>
+
+  )
 }
+
+export default App
