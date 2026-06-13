@@ -1,15 +1,24 @@
-# Medicare Backend
-
-FastAPI backend that provides department data for the Medicare frontend.
+MedicareApp backend
 
 Run locally:
 
 ```bash
-python -m pip install -r backend/requirements.txt
-uvicorn backend.main:app --reload --port 8000
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload
 ```
 
-API endpoints:
+Run tests:
 
-- `GET /` - health message
-- `GET /departments` - list of departments
+```bash
+pip install -r requirements.txt
+pytest -q
+```
+
+Docker:
+
+```bash
+docker build -t medicare-backend .
+docker run -p 8000:8000 medicare-backend
+```
