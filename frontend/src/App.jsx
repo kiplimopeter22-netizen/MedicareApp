@@ -1,7 +1,11 @@
-import Departments from "./pages/Departments";
+import React from 'react'
+import Departments from './Departments'
+import './index.css'
 
-function App() {
-  return <Departments />;
+export default function App(){
+  return (
+    <div>
+      <Departments />
+    </div>
+  )
 }
-
-export default App;

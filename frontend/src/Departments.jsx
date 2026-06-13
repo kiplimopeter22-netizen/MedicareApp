@@ -1,81 +1,91 @@
-import { useEffect, useState } from "react";
-import { getDepartments } from "../services/departmentService";
+import React from 'react';
 
-const Departments = () => {
-  const [departments, setDepartments] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchDepartments = async () => {
-      try {
-        const data = await getDepartments();
-        setDepartments(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDepartments();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading Departments...
-      </div>
-    );
+const departments = [
+  {
+    id: 'cardiology',
+    name: 'Cardiology',
+    desc: 'Heart and vascular diseases, advanced interventions.',
+    img: 'https://images.unsplash.com/photo-1580281657521-6f4b2b7bd0d8?auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 'neurology',
+    name: 'Neurology',
+    desc: 'Stroke, epilepsy, migraine, and Parkinson\'s care.',
+    img: 'https://images.unsplash.com/photo-1586773860416-7c0f5cb5f0a0?auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 'orthopedics',
+    name: 'Orthopedics',
+    desc: 'Joint replacement, sports injuries, and spine surgery.',
+    img: 'https://images.unsplash.com/photo-1584467735875-2d5f0e5b1a6b?auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 'pediatrics',
+    name: 'Pediatrics',
+    desc: 'Child health, vaccinations, and developmental care.',
+    img: 'https://images.unsplash.com/photo-1584466977778-7f3f6b6f9d1b?auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 'dermatology',
+    name: 'Dermatology',
+    desc: 'Skin disorders, laser treatments, and acne care.',
+    img: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 'gynecology',
+    name: 'Gynecology',
+    desc: "Women's health, maternity, and fertility services.",
+    img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 'dentist',
+    name: 'Dentist',
+    desc: 'Dental implants, braces, root canals, and oral hygiene.',
+    img: 'https://images.unsplash.com/photo-1588774069150-1b3d9b8b7f7e?auto=format&fit=crop&w=800&q=60'
+  },
+  {
+    id: 'eye',
+    name: 'Eye Center',
+    desc: 'Cataract surgery, LASIK, glaucoma treatment, and vision therapy.',
+    img: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=60'
   }
+];
 
+export default function Departments() {
   return (
-    <div className="min-h-screen bg-slate-50 py-16 px-6">
+    <div className="min-h-screen p-6 bg-gradient-to-b from-white to-slate-50">
       <div className="max-w-7xl mx-auto">
+        <header className="mb-6">
+          <h1 className="text-3xl font-extrabold text-slate-900">Our Specialized Departments</h1>
+          <p className="text-slate-600 mt-1">Comprehensive care across specialty areas.</p>
+        </header>
 
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-blue-700">
-            Our Specialized Departments
-          </h1>
-
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            We provide comprehensive healthcare through specialized
-            departments staffed by experienced professionals.
-          </p>
-        </div>
-
-        <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-
-          {departments.map((department) => (
-            <div
-              key={department.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition"
+        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {departments.map((d) => (
+            <article
+              key={d.id}
+              className="rounded-xl overflow-hidden shadow-md bg-white hover:shadow-xl transition-shadow duration-200"
             >
-              <img
-                src={department.image}
-                alt={department.name}
-                className="h-56 w-full object-cover"
-              />
-
-              <div className="p-6">
-                <h2 className="text-xl font-bold text-blue-700">
-                  {department.name}
-                </h2>
-
-                <p className="mt-3 text-gray-600">
-                  {department.description}
-                </p>
-
-                <button className="mt-6 w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-lg">
-                  Learn More
-                </button>
+              <div className="h-44 w-full overflow-hidden">
+                <img
+                  src={d.img}
+                  alt={d.name}
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                />
               </div>
-            </div>
+              <div className="p-4">
+                <h3 className="text-xl font-semibold text-slate-900">{d.name}</h3>
+                <p className="text-slate-600 mt-2">{d.desc}</p>
+                <div className="mt-4">
+                  <button className="inline-block px-3 py-1.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                    Learn more
+                  </button>
+                </div>
+              </div>
+            </article>
           ))}
-
-        </div>
+        </section>
       </div>
     </div>
   );
-};
-
-export default Departments;
+}
