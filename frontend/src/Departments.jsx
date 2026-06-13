@@ -62,8 +62,14 @@ export default function Departments(){
       <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {departments.map(d => (
           <article key={d.id} className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
-            <div className="h-48 w-full overflow-hidden">
-              <img src={d.img} alt={d.name} className="w-full h-full object-cover transform hover:scale-105 transition" />
+            <div className="h-48 w-full overflow-hidden bg-slate-100">
+              <img
+                src={d.img}
+                alt={d.name}
+                loading="lazy"
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/800x450?text=Image+Unavailable'; }}
+                className="w-full h-full object-cover transform hover:scale-105 transition"
+              />
             </div>
             <div className="p-4">
               <h3 className="text-xl font-semibold text-slate-900">{d.name}</h3>
