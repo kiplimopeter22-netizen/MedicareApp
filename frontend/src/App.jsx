@@ -26,9 +26,8 @@ export default function App() {
           {/* Desktop nav */}
           <nav className="hidden md:flex gap-6 items-center">
             <a className="hover:text-primary" href="#">Home</a>
-            <a className="hover:text-primary" href="#services">Services</a>
-            <a className="hover:text-primary" href="#doctors">Doctors</a>
-            <a className="hover:text-primary" href="#contact">Contact</a>
+            <a className="hover:text-primary" href="#departments">Departments</a>
+            <a className="hover:text-primary" href="#appointment">Appointment</a>
             <button className="bg-primary text-white px-4 py-2 rounded-full flex items-center gap-2">
               <Calendar size={16}/> Book
             </button>
@@ -108,12 +107,11 @@ function MobileNav(){
         <span className="sr-only">Toggle menu</span>
         {open ? '✕' : '☰'}
       </button>
-      {open && (
+        {open && (
         <div id="mobile-menu" className="absolute right-4 top-20 w-64 bg-white rounded-md shadow-lg py-4">
           <a className="block px-4 py-2 hover:bg-slate-50" href="#">Home</a>
-          <a className="block px-4 py-2 hover:bg-slate-50" href="#services">Services</a>
-          <a className="block px-4 py-2 hover:bg-slate-50" href="#doctors">Doctors</a>
-          <a className="block px-4 py-2 hover:bg-slate-50" href="#contact">Contact</a>
+          <a className="block px-4 py-2 hover:bg-slate-50" href="#departments">Departments</a>
+          <a className="block px-4 py-2 hover:bg-slate-50" href="#appointment">Appointment</a>
           <div className="px-4 pt-2">
             <button className="w-full bg-primary text-white px-4 py-2 rounded-full">Book</button>
           </div>
@@ -122,3 +120,4 @@ function MobileNav(){
     </div>
   )
 }
+
