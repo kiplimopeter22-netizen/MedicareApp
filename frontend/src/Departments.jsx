@@ -8,7 +8,7 @@ const departments = [
   { id: 'dermatology', name: 'Dermatology', desc: 'Skin disorders, laser treatments, and acne care.' },
   { id: 'gynecology', name: 'Gynecology', desc: "Women's health, maternity, and fertility services." },
   { id: 'dentist', name: 'Dentist', desc: 'Dental implants, braces, root canals, and oral hygiene.' },
-  { id: 'eye', name: 'Eye Center', desc: 'Cataract surgery, LASIK, glaucoma treatment, and vision therapy.' }
+  { id: 'eye', name: 'Eye Center', desc: 'Cataract surgery, LASIK, glaucoma treatment, and vision therapy.', img: 'https://source.unsplash.com/1400x900/?eye,clinic,ophthalmology' }
 ]
 
 function DeptIcon({ id }){
@@ -89,9 +89,19 @@ export default function Departments(){
         {departments.map(d => (
           <article key={d.id} className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
             <div className="h-48 w-full overflow-hidden bg-slate-50 flex items-center justify-center">
-              <div className="w-full h-full p-6"> 
-                <DeptIcon id={d.id} />
-              </div>
+              {d.img ? (
+                <img
+                  src={d.img}
+                  alt={d.name}
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/800x450?text=Image+Unavailable'; }}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full p-6">
+                  <DeptIcon id={d.id} />
+                </div>
+              )}
             </div>
             <div className="p-4">
               <h3 className="text-xl font-semibold text-slate-900">{d.name}</h3>
