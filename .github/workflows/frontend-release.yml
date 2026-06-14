@@ -1,0 +1,47 @@
+name: Create Frontend Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.0.0)'
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Create Release Tag
+        run: |
+          git tag -a frontend-v${{ github.event.inputs.version }} -m "Frontend Release v${{ github.event.inputs.version }}"
+          git push origin frontend-v${{ github.event.inputs.version }}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: frontend-v${{ github.event.inputs.version }}
+          release_name: Frontend v${{ github.event.inputs.version }}
+          body: |
+            ## Frontend Release v${{ github.event.inputs.version }}
+            
+            Docker Image: `${{ secrets.DOCKER_USERNAME }}/medicareapp-frontend:${{ github.event.inputs.version }}`
+            
+            ### Features & Changes
+            - See commit history for details
+            
+            ### Docker Pull
+            \`\`\`bash
+            docker pull ${{ secrets.DOCKER_USERNAME }}/medicareapp-frontend:${{ github.event.inputs.version }}
+            \`\`\`
+          draft: false
+          prerelease: false
