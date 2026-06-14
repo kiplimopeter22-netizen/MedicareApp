@@ -1,4 +1,4 @@
-MedicareApp backend
+# Backend (FastAPI)
 
 Run locally:
 
@@ -6,19 +6,35 @@ Run locally:
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn main:app --reload
+uvicorn app.main:app --reload --app-dir app
 ```
 
-Run tests:
+API docs available at `http://localhost:8000/docs` when running.
+
+Tests & coverage:
 
 ```bash
 pip install -r requirements.txt
-pytest -q
+pytest --maxfail=1 -q
 ```
 
-Docker:
+# Backend
 
-```bash
-docker build -t medicare-backend .
-docker run -p 8000:8000 medicare-backend
+FastAPI backend for the Medicare App.
+
+Quick start:
+
+1. Create a virtualenv: `python -m venv .venv` then `source .venv/bin/activate`.
+2. Install dependencies: `pip install -r requirements.txt`.
+3. Run the app: `uvicorn app.main:app --reload --port 8000`.
+4. Open docs at `http://localhost:8000/docs` or `http://localhost:8000/redoc`.
+
+Run tests and coverage:
+
 ```
+pytest --maxfail=1 --disable-warnings -q
+pytest --cov=app --cov-report=term-missing
+```
+# Backend
+
+This folder will contain backend code (APIs, database, etc.).
