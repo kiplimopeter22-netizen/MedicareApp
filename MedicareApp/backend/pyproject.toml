@@ -1,0 +1,18 @@
+[project]
+name = "medicare-backend"
+version = "0.1.0"
+description = "FastAPI backend for Medicare login"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.107.0",
+  "uvicorn[standard]>=0.23.0",
+  "pydantic>=2.7.0"
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.4.0", "httpx>=0.27.0", "pytest-cov>=4.4.0"]
+
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
